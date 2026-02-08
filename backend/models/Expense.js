@@ -7,7 +7,8 @@ const ExpenseSchema = new mongoose.Schema(
     date: { type: String, required: true },
     time: { type: String },
     location: { type: String },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+
   },
   { timestamps: true }
 );
