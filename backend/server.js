@@ -1,9 +1,9 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import connectDB from './config/db.js';
-import expensesRoutes from './routes/expenses.js';
-import usersRoutes from './routes/users.js';
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const expensesRoutes = require('./routes/expenses');
+const usersRoutes = require('./routes/users');
 
 dotenv.config();
 
@@ -14,15 +14,12 @@ const startServer = async () => {
     await connectDB();
     console.log("MongoDB connected");
 
-    // Middleware
     app.use(cors());
     app.use(express.json());
 
-    // Routes (lowercase best practice)
     app.use('/api/users', usersRoutes);
     app.use('/api/expenses', expensesRoutes);
 
-    // Default route
     app.get('/', (req, res) => {
       res.send('Expense Tracker API is running');
     });
@@ -33,7 +30,7 @@ const startServer = async () => {
     });
 
   } catch (error) {
-    console.error("Server start error:", error);
+    console.error(error);
   }
 };
 
