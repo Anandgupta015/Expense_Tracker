@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import expensesRoutes from './routes/expenses.js';
-import usersRoutes from './routes/Users.js';
+import usersRoutes from './routes/users.js';
 
 import User from "./models/User.js";   // 👈 ADD
 import Expense from "./models/Expense.js"; // 👈 ADD
