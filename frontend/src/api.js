@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api/expenses',
+  baseURL: 'https://expense-tracker-backend-jo84.onrender.com/api/expenses',
 });
 
 // Get all expenses (pass userId)
