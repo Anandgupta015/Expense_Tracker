@@ -13,11 +13,14 @@ export default function Login({ onLogin, toggleSignup }) {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+      const res = await fetch(
+        'https://expense-tracker-backend-jo84.onrender.com/api/users/login',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
@@ -26,43 +29,51 @@ export default function Login({ onLogin, toggleSignup }) {
         return;
       }
 
-      // Save logged-in user in localStorage and update app state
+      // save user
       localStorage.setItem('loggedInUser', JSON.stringify(data));
       onLogin(data);
+
     } catch (err) {
       console.error(err);
       alert('Server error. Try again later.');
     }
-  }
+  };
 
   return (
     <div className="max-w-sm mx-auto mt-20 p-6 bg-white rounded shadow">
       <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+
       <form onSubmit={submit} className="space-y-3">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full p-2 border rounded"
         />
+
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full p-2 border rounded"
         />
+
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white py-2 rounded"
         >
           Login
         </button>
       </form>
+
       <p className="mt-3 text-sm text-center">
         Don't have an account?{' '}
-        <span onClick={toggleSignup} className="text-indigo-600 cursor-pointer font-medium">
+        <span
+          onClick={toggleSignup}
+          className="text-indigo-600 cursor-pointer font-medium"
+        >
           Sign Up
         </span>
       </p>
